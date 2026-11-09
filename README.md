@@ -50,10 +50,52 @@ directly. Safe to call more than once on the same page — each call
 generates its own unique element IDs and scopes its CSS to a wrapper
 class, so instances never collide with each other or the host page.
 
+### Print ornaments
+
+Static ornaments are `grid` grobs, so they compose into base grid, ggplot2
+(`annotation_custom()`), gt, and Quarto, and are built from geometry alone
+(no imported assets).
+
+```r
+grid::grid.newpage()
+grid::grid.draw(compass_rose_grob(points = 12))
+
+# ggplot2 (keep the box square, e.g. with coord_fixed())
+ggplot2::ggplot(mpg, ggplot2::aes(displ, hwy)) +
+  ggplot2::geom_point(colour = "grey70") +
+  ggplot2::annotation_custom(compass_rose_grob(n_ticks = 48),
+                             xmin = 5.3, xmax = 7.1, ymin = 30, ymax = 44)
+
+# gt: needs the 'gt' and 'svglite' packages
+gt::gt(head(mtcars[, 1:4])) |>
+  gt_ornament(compass_rose_grob(n_ticks = 48), where = "header")
+
+# Quarto / R Markdown HTML, in a chunk with `#| output: asis`
+cat(ornament_html(compass_rose_grob(points = 12), width = 1.2, height = 1.2))
+```
+
+`ornament_svg()` renders any ornament grob to an inline SVG string, so the
+same bridge works for gt, Quarto, `htmltools::HTML()`, and Shiny.
+
 ## Status
 
 Species #1 (`dk_specimen()`, the interactive mitosis specimen) is in —
 ported from the Artifact prototype, CSS rescoped off `:root` onto a
 `.delightkitr-specimen` wrapper, classes namespaced `dk-`, element IDs
-templated per-instance. Next: proving out the R/xspline static surface as
-species #2, then the TikZ side.
+templated per-instance. The static surface has started: `compass_rose_grob()`
+plus the grob-to-HTML bridge (`ornament_svg()`, `ornament_html()`,
+`gt_ornament()`). Next: endcap-style rules and flourishes built from
+`xsplineGrob()`, then the TikZ side.
+
+## Credits and inspiration
+
+The design principle of the print ornaments — small ornament *kinds*
+generated from geometry with seeded variation, rather than imported
+artwork — follows [tikz-flora](https://github.com/wn-mitch/tikz-flora)
+by wn-mitch (MIT licence; [site](https://flora.alpacasoft.dev/)), which in
+turn credits Kevin Raymond's
+[florilegium](https://github.com/kevinraymond/florilegium) (MIT).
+delightkitr does not copy their code or constructions: the ornaments here
+are independently written in R/`grid`. Where a future ornament adapts a
+specific tikz-flora construction, it will be credited in its own
+documentation and the MIT notice reproduced.
