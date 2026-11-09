@@ -74,6 +74,19 @@ gt::gt(head(mtcars[, 1:4])) |>
 cat(ornament_html(compass_rose_grob(points = 12), width = 1.2, height = 1.2))
 ```
 
+Rules and endcaps are wide, short ornaments: draw them in a box about
+8 times wider than tall (e.g. 4 x 0.5 inches). A `seed` makes each one a
+little different — always the same for the same seed, and without touching
+your global RNG.
+
+```r
+grid::grid.draw(swelled_rule_grob(seed = 1, ends = "diamond"))
+grid::grid.draw(fleuron_rule_grob(seed = 7, ends = "fleuron"))
+
+# as a divider in a Quarto HTML doc (chunk option `#| output: asis`)
+cat(ornament_html(fleuron_rule_grob(seed = 2), width = 5, height = 0.6))
+```
+
 `ornament_svg()` renders any ornament grob to an inline SVG string, so the
 same bridge works for gt, Quarto, `htmltools::HTML()`, and Shiny.
 
@@ -84,8 +97,9 @@ ported from the Artifact prototype, CSS rescoped off `:root` onto a
 `.delightkitr-specimen` wrapper, classes namespaced `dk-`, element IDs
 templated per-instance. The static surface has started: `compass_rose_grob()`
 plus the grob-to-HTML bridge (`ornament_svg()`, `ornament_html()`,
-`gt_ornament()`). Next: endcap-style rules and flourishes built from
-`xsplineGrob()`, then the TikZ side.
+`gt_ornament()`). Endcaps and rules are in too: `endcap_grob()`,
+`swelled_rule_grob()` and `fleuron_rule_grob()`, with seeded variation.
+Next: more flourish kinds, then the TikZ side.
 
 ## Credits and inspiration
 

@@ -2,6 +2,9 @@
 
 export(compass_rose_grob)
 export(dk_specimen)
+export(endcap_grob)
+export(fleuron_rule_grob)
 export(gt_ornament)
 export(ornament_html)
 export(ornament_svg)
+export(swelled_rule_grob)
