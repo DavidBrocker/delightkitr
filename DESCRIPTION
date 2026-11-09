@@ -1,0 +1,30 @@
+Package: delightkitr
+Title: Small, Purposeless Decorative Flourishes for Web, Reports, and LaTeX
+Version: 0.0.0.9000
+Authors@R: c(
+    person("David", "Brocker", email = "davidabrocker@gmail.com", role = c("aut", "cre")),
+    person("Claude", role = "ctb", comment = "Anthropic's Claude Sonnet 5; implementation, testing, and documentation assistance")
+    )
+Description: Provides "delighters" -- small decorative flourishes with no
+    functional purpose, in the tradition of modelmaking greebles -- across
+    three output surfaces: interactive HTML/JS/CSS widgets for Quarto HTML
+    documents, Shiny apps, and standalone pages; static SVG appliques and
+    borders (via grid::xsplineGrob()) for Quarto PDF/Word reports and
+    ggplot2 figures; and TikZ decorations for LaTeX documents. Each surface
+    has its own implementation, but they share one visual language:
+    heritable, mutating traits (color drift, a smooth-to-faceted blend)
+    rather than pure randomness, so a decoration never looks arbitrary.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+Depends: R (>= 4.1)
+Imports:
+    grid,
+    htmltools
+Suggests:
+    ggplot2,
+    knitr,
+    rmarkdown,
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+Config/roxygen2/version: 8.0.0
