@@ -52,6 +52,26 @@ class, so instances never collide with each other or the host page.
 
 ### Print ornaments
 
+Twelve ornament kinds, listed by `dk_ornaments()` and buildable by id with
+`dk_ornament()`. **See them all in the gallery:** open `docs/index.html`
+(rebuild it with `Rscript data-raw/build-gallery.R`).
+
+| Family | Kinds |
+|---|---|
+| Rules | `swelled_rule_grob()`, `fleuron_rule_grob()`, `swash_grob()` |
+| Borders | `rinceau_grob()`, `greek_key_grob()`, `scallop_grob()` |
+| Medallions | `compass_rose_grob()`, `guilloche_grob()`, `rosette_grob()`, `sunburst_grob()` |
+| Corners | `corner_grob()` |
+| Marks | `asterism_grob()` (dinkus and asterism) |
+
+Borders and swashes fit themselves to the box they are drawn in, so tiles
+stay square and the repeat count always fits exactly.
+
+```r
+dk_ornaments()                       # the catalogue
+grid::grid.draw(dk_ornament("guilloche", seed = 3))
+```
+
 Static ornaments are `grid` grobs, so they compose into base grid, ggplot2
 (`annotation_custom()`), gt, and Quarto, and are built from geometry alone
 (no imported assets).
@@ -97,9 +117,8 @@ ported from the Artifact prototype, CSS rescoped off `:root` onto a
 `.delightkitr-specimen` wrapper, classes namespaced `dk-`, element IDs
 templated per-instance. The static surface has started: `compass_rose_grob()`
 plus the grob-to-HTML bridge (`ornament_svg()`, `ornament_html()`,
-`gt_ornament()`). Endcaps and rules are in too: `endcap_grob()`,
-`swelled_rule_grob()` and `fleuron_rule_grob()`, with seeded variation.
-Next: more flourish kinds, then the TikZ side.
+`gt_ornament()`). Twelve ornament kinds are in, all with seeded variation, plus the gallery.
+Next: more kinds (chains, dentils, cartouches, tailpieces), then the TikZ side.
 
 ## Credits and inspiration
 

@@ -3,11 +3,15 @@
 # every platform, without touching (or depending on) R's global RNG state.
 dk_rng <- function(seed = NULL) {
   if (is.null(seed)) seed <- sample.int(.Machine$integer.max - 1L, 1L)
-  state <- (abs(as.numeric(seed)) %% 2147483646) + 1
-  function(lo = 0, hi = 1) {
+  # Scramble the seed first: Park-Miller's first draws are almost identical for
+  # small neighbouring seeds (1, 2, 3, ...), which would make them look alike.
+  state <- ((abs(as.numeric(seed)) %% 1048576) * 2654435761) %% 2147483646 + 1
+  step <- function() {
     state <<- (16807 * state) %% 2147483647
-    lo + (hi - lo) * state / 2147483647
+    state / 2147483647
   }
+  for (i in 1:4) step()
+  function(lo = 0, hi = 1) lo + (hi - lo) * step()
 }
 
 # All shape geometry is expressed in "snpc" units (the shorter side of the
