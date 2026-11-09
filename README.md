@@ -53,8 +53,9 @@ class, so instances never collide with each other or the host page.
 ### Print ornaments
 
 Twelve ornament kinds, listed by `dk_ornaments()` and buildable by id with
-`dk_ornament()`. **See them all in the gallery:** open `docs/index.html`
-(rebuild it with `Rscript data-raw/build-gallery.R`).
+`dk_ornament()`. **See them all in the
+[gallery](https://davidbrocker.github.io/delightkitr/)** (source:
+`docs/index.html`, rebuilt with `Rscript data-raw/build-gallery.R`).
 
 | Family | Kinds |
 |---|---|
