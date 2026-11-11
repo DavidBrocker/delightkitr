@@ -65,7 +65,7 @@ blurb <- c(
 
 cat_tbl <- dk_ornaments()
 families <- c(rule = "Rules", border = "Borders", medallion = "Medallions",
-              corner = "Corners", mark = "Marks")
+              corner = "Corners", mark = "Marks", use = "In use")
 
 cards <- vapply(seq_len(nrow(cat_tbl)), function(i) {
   id <- cat_tbl$id[i]
@@ -81,6 +81,43 @@ cards <- vapply(seq_len(nrow(cat_tbl)), function(i) {
     cat_tbl$family[i], id, cat_tbl$label[i], blurb[[id]], cat_tbl$family[i],
     paste(items, collapse = ""))
 }, "")
+
+# "In use": the ornaments framing a ggplot2 plot, bordering a panel, and in gt.
+plot_svg <- function(x, width, height) {
+  getp <- svglite::svgstring(width = width, height = height, bg = "white", standalone = FALSE)
+  on.exit(grDevices::dev.off(), add = TRUE)
+  print(x)
+  paste(getp(), collapse = "")
+}
+library(ggplot2)
+base_plot <- ggplot(mtcars, aes(wt, mpg)) +
+  geom_point(colour = "#3b3b3b", size = 1.8) +
+  labs(title = "Fuel economy by weight", x = "Weight (1000 lb)", y = "Miles per gallon") +
+  theme_minimal(base_size = 9)
+framed <- ornament_frame(base_plot, top = "greek_key", bottom = "greek_key",
+                         left = "scallop", right = "scallop", corners = TRUE,
+                         thickness = 0.36)
+panelled <- base_plot +
+  scale_y_continuous(expand = expansion(mult = 0.14)) +
+  scale_x_continuous(expand = expansion(mult = 0.1)) +
+  panel_ornament(top = "rinceau", bottom = "rinceau", corners = TRUE, thickness = 0.32)
+gt_tbl <- gt::gt(head(mtcars[, 1:5], 5), rownames_to_stub = TRUE) |>
+  gt_ornament_frame(top = "swash", bottom = "fleuron_rule",
+                    title = "Motor Trend cars", subtitle = "Five models, five measures") |>
+  gt::tab_options(table.font.names = "Georgia", table.width = gt::pct(100),
+                  table.font.size = gt::px(13))
+use_items <- list(
+  list(svg = plot_svg(framed, 6, 4.2), code = "ornament_frame(p, top = \"greek_key\", left = \"scallop\", corners = TRUE)"),
+  list(svg = plot_svg(panelled, 6, 4.2), code = "p + panel_ornament(top = \"rinceau\", bottom = \"rinceau\", corners = TRUE)"),
+  list(svg = gt::as_raw_html(gt_tbl, inline_css = TRUE), code = "gt_ornament_frame(top = \"swash\", bottom = \"fleuron_rule\", title = ...)"))
+use_cards <- sprintf('<figure data-i="%d">%s<figcaption><code>%s</code></figcaption></figure>',
+                     seq_along(use_items), vapply(use_items, `[[`, "", "svg"),
+                     vapply(use_items, `[[`, "", "code"))
+use_section <- sprintf(paste0(
+  '<section class="kind" data-family="use" data-static id="use"><header><h2>In ggplot2 and gt</h2>',
+  '<p>Frame a whole plot, border just its panel, or dress a table: border ornaments fit themselves to each side.</p></header>',
+  '<div class="row row-use">%s</div></section>'), paste(use_cards, collapse = ""))
+cards <- c(cards, use_section)
 
 palettes <- list(
   Gilt     = c("#C9A227", "#D9B75C", "#9E7C2C"),
@@ -121,6 +158,7 @@ button:hover{color:var(--ink)}
 .row{display:grid;gap:14px;grid-template-columns:repeat(3,minmax(0,1fr))}
 .row-rule,.row-border{grid-template-columns:minmax(0,1fr)}
 .row-mark{grid-template-columns:repeat(3,minmax(0,1fr))}
+.row-use{grid-template-columns:repeat(2,minmax(0,1fr))}.row-use figure:nth-child(3){grid-column:1/-1;max-width:640px;margin:0 auto;width:100%}.row-use figure svg{max-height:none}.row-use figure .gt_table{margin:0 auto!important}
 figure{min-width:0;margin:0;background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:14px 12px 8px;text-align:center}
 svg{max-width:100%}figure svg{width:100%;height:auto;max-height:230px}
 .row-medallion figure svg,.row-corner figure svg{max-width:230px}
@@ -128,7 +166,7 @@ figcaption{font-size:.7em;color:var(--muted);margin-top:6px}
 code{font:.95em ui-monospace,SFMono-Regular,Menlo,monospace}
 footer{padding:40px 0 70px;color:var(--muted);font-size:.9em;text-align:center}
 footer a{color:var(--accent)}
-@media (max-width:700px){.row-medallion,.row-corner,.row-mark{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}figure{padding:8px 4px 4px}figcaption{display:none}}
+@media (max-width:700px){.row-use{grid-template-columns:minmax(0,1fr)}.row-medallion,.row-corner,.row-mark{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}figure{padding:8px 4px 4px}figcaption{display:none}}
 '
 
 js <- sprintf('
@@ -136,16 +174,17 @@ const PALS = %s, SENT = %s, N = %d;
 let pal = 0, fam = "all";
 const kinds = [...document.querySelectorAll(".kind")];
 const orig = new Map();
-document.querySelectorAll("figure").forEach(f => { const s = f.querySelector("svg"); orig.set(f, s.outerHTML); });
+document.querySelectorAll("figure").forEach(f => orig.set(f, f.innerHTML));
 function recolor(){
   const p = PALS[pal];
   document.querySelectorAll("figure").forEach(f => {
     let h = orig.get(f);
     SENT.forEach((c, i) => { h = h.replace(new RegExp(c.slice(1), "gi"), p[i].slice(1)); });
-    f.querySelector("svg").outerHTML = h;
+    f.innerHTML = h;
   });
 }
 function pick(k){
+  if (k.hasAttribute("data-static")) return;
   const figs = [...k.querySelectorAll("figure")];
   const per = k.dataset.family === "rule" || k.dataset.family === "border" ? 3 : 3;
   const idx = figs.map((_, i) => i).sort(() => Math.random() - .5).slice(0, per);

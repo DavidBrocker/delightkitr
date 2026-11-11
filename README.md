@@ -108,6 +108,31 @@ grid::grid.draw(fleuron_rule_grob(seed = 7, ends = "fleuron"))
 cat(ornament_html(fleuron_rule_grob(seed = 2), width = 5, height = 0.6))
 ```
 
+### In ggplot2 and gt
+
+```r
+library(ggplot2)
+p <- ggplot(mtcars, aes(wt, mpg)) + geom_point()
+
+# Frame the whole plot: border ornaments on any sides, flourishes in the corners
+ornament_frame(p, top = "greek_key", bottom = "greek_key",
+               left = "scallop", right = "scallop", corners = TRUE)
+
+# Or border just the panel, as a layer (give the scales a little room)
+p + scale_y_continuous(expand = expansion(mult = 0.15)) +
+  panel_ornament(top = "scallop", bottom = "scallop", corners = TRUE)
+
+# gt: an ornament above the title and another below the table
+gt::gt(head(mtcars[, 1:4])) |>
+  gt_ornament_frame(top = "swash", bottom = "fleuron_rule",
+                    title = "Motor Trend cars")
+```
+
+Border ornaments fit themselves to the length of each side, so a frame suits
+any plot shape. `ornament_frame()` returns a grob that prints like a plot and
+saves with `ggsave()`. The gt helpers produce HTML (Quarto, R Markdown, the
+Viewer), not PDF or Word output.
+
 `ornament_svg()` renders any ornament grob to an inline SVG string, so the
 same bridge works for gt, Quarto, `htmltools::HTML()`, and Shiny.
 

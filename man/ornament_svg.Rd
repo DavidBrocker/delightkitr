@@ -9,17 +9,13 @@ ornament_svg(grob, width = 1, height = 1, bg = "transparent")
 \arguments{
 \item{grob}{A grid grob, e.g. \code{\link[=compass_rose_grob]{compass_rose_grob()}}.}
 
-\item{width, height}{Device size in inches; also fixes the ornament's aspect
-ratio (keep equal for a square medallion; wide + short for a rule).}
+\item{width, height}{Device size in inches; also fixes the ornament's aspect ratio (keep equal for a square medallion; wide + short for a rule).}
 
 \item{bg}{Background colour; "transparent" lets the table/page show through.}
 }
 \value{
-A length-1 character string of \verb{<svg>...</svg>} markup.
+A length-1 character string of \code{<svg>...</svg>} markup.
 }
 \description{
-The bridge from a delightkitr grob (grid graphics) to HTML outputs --- gt
-tables, Quarto HTML, R Markdown. grid draws to a graphics device, not into
-HTML, so this renders the grob once to an in-memory SVG and returns the
-markup. Form-agnostic: works for any ornament grob, medallion or rule.
+The bridge from a delightkitr grob (grid graphics) to HTML outputs — gt tables, Quarto HTML, R Markdown. grid draws to a graphics device, not into HTML, so this renders the grob once to an in-memory SVG and returns the markup. Form-agnostic: works for any ornament grob, medallion or rule.
 }

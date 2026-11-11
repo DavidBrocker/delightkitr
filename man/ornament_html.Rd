@@ -10,25 +10,26 @@ ornament_html(
   height = 1,
   bg = "transparent",
   align = c("center", "left", "right"),
-  pad = "0.25rem"
+  pad = "0.25rem",
+  fluid = FALSE
 )
 }
 \arguments{
-\item{grob}{A grid grob, e.g. \code{\link[=compass_rose_grob]{compass_rose_grob()}}.}
-
-\item{width, height}{Device size in inches; also fixes the ornament's aspect
-ratio (keep equal for a square medallion; wide + short for a rule).}
-
-\item{bg}{Background colour; "transparent" lets the table/page show through.}
-
 \item{align}{"center", "left", or "right".}
 
 \item{pad}{CSS vertical padding around the ornament.}
+
+\item{fluid}{If \code{TRUE}, the SVG scales down to fit its container (never larger than \code{width} inches) instead of keeping a fixed size.}
+
+\item{grob}{A grid grob, e.g. \code{\link[=compass_rose_grob]{compass_rose_grob()}}.}
+
+\item{width, height}{Device size in inches; also fixes the ornament's aspect ratio (keep equal for a square medallion; wide + short for a rule).}
+
+\item{bg}{Background colour; "transparent" lets the table/page show through.}
 }
 \value{
 A length-1 character string of HTML.
 }
 \description{
-Reusable by both gt and Quarto. \code{line-height:0} keeps the SVG from picking up
-stray vertical space from its container.
+Reusable by both gt and Quarto. \code{line-height:0} keeps the SVG from picking up stray vertical space from its container.
 }

@@ -29,13 +29,22 @@ ornament_svg <- function(grob, width = 1, height = 1, bg = "transparent") {
 #' @inheritParams ornament_svg
 #' @param align "center", "left", or "right".
 #' @param pad   CSS vertical padding around the ornament.
+#' @param fluid If `TRUE`, the SVG scales down to fit its container (never
+#'   larger than `width` inches) instead of keeping a fixed size.
 #' @return A length-1 character string of HTML.
 #' @export
 ornament_html <- function(grob, width = 1, height = 1, bg = "transparent",
-                          align = c("center", "left", "right"), pad = "0.25rem") {
+                          align = c("center", "left", "right"), pad = "0.25rem",
+                          fluid = FALSE) {
   align <- match.arg(align)
+  svg <- ornament_svg(grob, width, height, bg)
+  if (fluid) {
+    svg <- sub("width='[^']*' height='[^']*'",
+               sprintf("style='width:100%%;height:auto;max-width:%sin'", format(width)),
+               svg)
+  }
   sprintf('<div style="text-align:%s;padding:%s 0;line-height:0">%s</div>',
-          align, pad, ornament_svg(grob, width, height, bg))
+          align, pad, svg)
 }
 
 #' Place an ornament into a gt table

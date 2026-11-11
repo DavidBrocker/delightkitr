@@ -25,8 +25,5 @@ gt_ornament(
 The modified \code{gt_tbl}.
 }
 \description{
-Proven end-to-end path: grob -> inline SVG -> gt. Non-destructive by default
-(adds a source-note flourish). \code{where = "header"} sets the table title to the
-ornament instead, which REPLACES any existing title --- pass your title text
-separately if you need both.
+Proven end-to-end path: grob -> inline SVG -> gt. Non-destructive by default (adds a source-note flourish). \code{where = "header"} sets the table title to the ornament instead, which REPLACES any existing title — pass your title text separately if you need both.
 }
