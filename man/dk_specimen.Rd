@@ -12,8 +12,10 @@ The stage never exceeds this value but will shrink to fit a narrower
 container (a sidebar, a Shiny panel column, ...).}
 }
 \value{
-An \code{\link[htmltools:HTML]{htmltools::HTML()}} object -- print it directly in a Quarto/R
-Markdown chunk with \code{results='asis'}, or use it as Shiny UI.
+A \code{\link[htmltools:browsable]{htmltools::browsable()}}-wrapped \code{\link[htmltools:HTML]{htmltools::HTML()}} object --
+printing it at the console opens it in the RStudio Viewer, printing it
+in a Quarto/R Markdown chunk renders it inline (no \code{results='asis'}
+needed), and it works directly as Shiny UI.
 }
 \description{
 A self-contained, mouse/touch-reactive organic shape with no function --

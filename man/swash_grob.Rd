@@ -17,9 +17,9 @@ swash_grob(
 \arguments{
 \item{thickness}{Maximum stroke thickness as a fraction of the box height.}
 
-\item{variation}{How much the seed may vary the shape, 0 to 1.}
-
 \item{seed}{Integer seed, or \code{NULL} for a random one.}
+
+\item{variation}{How much the seed may vary the shape, 0 to 1.}
 
 \item{ink}{Colour.}
 
@@ -29,12 +29,17 @@ swash_grob(
 A \code{gTree} grob.
 }
 \description{
-A long S-shaped flourish whose stroke swells in the middle and thins to hairlines, finishing in an inward-turning curl at each end -- the kind of flourish a copperplate pen leaves under a title. The stroke is a single ribbon along the curve.
+A long S-shaped flourish whose stroke swells in the middle and thins to
+hairlines, finishing in an inward-turning curl at each end -- the kind of
+flourish a copperplate pen leaves under a title. The stroke is a single
+ribbon along the curve.
 }
 \details{
-Fits itself to the box it is drawn in (a wide, short box works best, about 6 times wider than tall).
+Fits itself to the box it is drawn in (a wide, short box works best, about
+6 times wider than tall).
 
-With a \code{seed}, the sway of the S, the curl size and the number of curl turns vary.
+With a \code{seed}, the sway of the S, the curl size and the number of curl turns
+vary.
 }
 \examples{
 grid::grid.newpage()

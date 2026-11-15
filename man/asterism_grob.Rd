@@ -29,10 +29,12 @@ asterism_grob(
 A \code{gTree} grob.
 }
 \description{
-The small breaks printers put between sections. \code{"dinkus"} is three stars in a row; \code{"asterism"} is the triangle of three (⁂). Each star is a polygon.
+The small breaks printers put between sections. \code{"dinkus"} is three stars
+in a row; \code{"asterism"} is the triangle of three (⁂). Each star is a polygon.
 }
 \details{
-With a \code{seed}, the number of star points, their sharpness and a slight tilt vary.
+With a \code{seed}, the number of star points, their sharpness and a slight tilt
+vary.
 }
 \examples{
 grid::grid.newpage()

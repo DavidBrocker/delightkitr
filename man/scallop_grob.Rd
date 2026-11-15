@@ -17,9 +17,9 @@ scallop_grob(
 \arguments{
 \item{thickness}{Maximum stroke thickness as a fraction of the box height.}
 
-\item{variation}{How much the seed may vary the shape, 0 to 1.}
-
 \item{seed}{Integer seed, or \code{NULL} for a random one.}
+
+\item{variation}{How much the seed may vary the shape, 0 to 1.}
 
 \item{ink}{Colour.}
 
@@ -29,12 +29,16 @@ scallop_grob(
 A \code{gTree} grob.
 }
 \description{
-A row of arches, each with a smaller arch inside it and a bead where neighbours meet: the shell-and-fan edge used on frames and lace.
+A row of arches, each with a smaller arch inside it and a bead where
+neighbours meet: the shell-and-fan edge used on frames and lace.
 }
 \details{
-Fits itself to the box it is drawn in, choosing the number of scallops so they fill the width exactly (a wide, short box works best, about 10 times wider than tall).
+Fits itself to the box it is drawn in, choosing the number of scallops so
+they fill the width exactly (a wide, short box works best, about 10 times
+wider than tall).
 
-With a \code{seed}, the number of scallops, the inner-arch size and the bead size vary a little.
+With a \code{seed}, the number of scallops, the inner-arch size and the bead
+size vary a little.
 }
 \examples{
 grid::grid.newpage()

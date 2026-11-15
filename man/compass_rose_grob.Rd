@@ -42,8 +42,8 @@ long cardinal / short intercardinal rays.}
 \item{ticks}{Draw the degree tick ring?}
 
 \item{n_ticks}{Number of ticks around the ring. Every
-\code{round(n_ticks / 8)}-th tick is drawn long; with fewer than 12 ticks
-all ticks are long.}
+\code{round(n_ticks / 8)}-th tick is drawn long; with fewer
+than 12 ticks all ticks are long.}
 
 \item{north}{Draw the north trefoil marker?}
 

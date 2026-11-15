@@ -6,6 +6,8 @@
 \alias{delightkitr-package}
 \title{delightkitr: Small, Purposeless Decorative Flourishes for Web, Reports, and LaTeX}
 \description{
+\if{html}{\figure{logo.svg}{options: style='float: right' alt='logo' width='120'}}
+
 Provides "delighters" -- small decorative flourishes with no functional purpose, in the tradition of modelmaking greebles -- across three output surfaces: interactive HTML/JS/CSS widgets for Quarto HTML documents, Shiny apps, and standalone pages; static SVG appliques and borders (via grid::xsplineGrob()) for Quarto PDF/Word reports and ggplot2 figures; and TikZ decorations for LaTeX documents. Each surface has its own implementation, but they share one visual language: heritable, mutating traits (color drift, a smooth-to-faceted blend) rather than pure randomness, so a decoration never looks arbitrary.
 }
 \author{

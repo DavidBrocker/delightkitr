@@ -20,9 +20,9 @@ sunburst_grob(
 
 \item{size}{Overall diameter in snpc units (0-1).}
 
-\item{variation}{How much the seed may vary ray lengths, 0 to 1.}
-
 \item{seed}{Integer seed, or \code{NULL} for a random one.}
+
+\item{variation}{How much the seed may vary ray lengths, 0 to 1.}
 
 \item{ink}{Colour.}
 
@@ -32,7 +32,8 @@ sunburst_grob(
 A \code{gTree} grob.
 }
 \description{
-Alternating long and short rays around a ringed hub, the classic Art Deco and engraved-title sun. Each ray is a thin triangle.
+Alternating long and short rays around a ringed hub, the classic Art Deco
+and engraved-title sun. Each ray is a thin triangle.
 }
 \details{
 With a \code{seed}, the ray count and the small differences in ray length vary.

@@ -35,10 +35,13 @@ guilloche_grob(
 A \code{gTree} grob.
 }
 \description{
-The woven, engraved rosette seen on banknotes and certificates: many wavy circles, each rotated a little from the last, whose crossings make a lattice. Built from one family of curves, \code{r(theta) = base + amp * cos(lobes * theta + phase)}; no imported assets.
+The woven, engraved rosette seen on banknotes and certificates: many wavy
+circles, each rotated a little from the last, whose crossings make a lattice.
+Built from one family of curves, \code{r(theta) = base + amp * cos(lobes * theta + phase)}; no imported assets.
 }
 \details{
-With a \code{seed}, the number of lobes, the number of overlaid curves and the wave depth vary, so every seed is a different rosette.
+With a \code{seed}, the number of lobes, the number of overlaid curves and the
+wave depth vary, so every seed is a different rosette.
 }
 \examples{
 grid::grid.newpage()

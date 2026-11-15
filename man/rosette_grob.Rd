@@ -23,11 +23,11 @@ rosette_grob(
 
 \item{size}{Overall diameter in snpc units (0-1).}
 
+\item{seed}{Integer seed, or \code{NULL} for a random one.}
+
 \item{fill}{Length-2 vector \code{c(light, dark)} for the alternating layers.}
 
 \item{ink}{Outline and centre colour.}
-
-\item{seed}{Integer seed, or \code{NULL} for a random one.}
 
 \item{name, gp, vp}{Standard grob arguments.}
 }
@@ -35,7 +35,10 @@ rosette_grob(
 A \code{gTree} grob.
 }
 \description{
-A flower-like medallion: layers of petals, each layer rotated half a petal from the one behind, in two alternating tones, around a jewelled centre. Petals are ribbons (see the package notes on geometry) whose width swells and tapers, so no imported assets are used.
+A flower-like medallion: layers of petals, each layer rotated half a petal
+from the one behind, in two alternating tones, around a jewelled centre.
+Petals are ribbons (see the package notes on geometry) whose width swells and
+tapers, so no imported assets are used.
 }
 \details{
 With a \code{seed}, the petal count, petal fatness and number of layers vary.

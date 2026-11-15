@@ -16,13 +16,14 @@ corner_grob(
 )
 }
 \arguments{
-\item{corner}{Which corner the bend sits in: \code{"bl"}, \code{"br"}, \code{"tl"} or \code{"tr"} (bottom/top, left/right).}
+\item{corner}{Which corner the bend sits in: \code{"bl"}, \code{"br"}, \code{"tl"} or
+\code{"tr"} (bottom/top, left/right).}
 
 \item{thickness}{Maximum arm thickness in snpc units.}
 
-\item{variation}{How much the seed may vary the shape, 0 to 1.}
-
 \item{seed}{Integer seed, or \code{NULL} for a random one.}
+
+\item{variation}{How much the seed may vary the shape, 0 to 1.}
 
 \item{ink}{Colour.}
 
@@ -32,12 +33,16 @@ corner_grob(
 A \code{gTree} grob.
 }
 \description{
-A bracket for the corner of a page, frame or card: two arms that meet in a rounded bend and finish in inward-turning curls, with a small cluster of beads tucked into the angle. The arms are a single tapering ribbon.
+A bracket for the corner of a page, frame or card: two arms that meet in a
+rounded bend and finish in inward-turning curls, with a small cluster of
+beads tucked into the angle. The arms are a single tapering ribbon.
 }
 \details{
-Draw it in a square box. Use \code{corner} to place it at any of the four corners of the box.
+Draw it in a square box. Use \code{corner} to place it at any of the four corners
+of the box.
 
-With a \code{seed}, the arm length, curl size, number of curl turns and bead cluster vary.
+With a \code{seed}, the arm length, curl size, number of curl turns and bead
+cluster vary.
 }
 \examples{
 grid::grid.newpage()

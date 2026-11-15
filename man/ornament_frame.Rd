@@ -19,13 +19,17 @@ ornament_frame(
 \arguments{
 \item{plot}{A ggplot, or any grid grob.}
 
-\item{top, bottom, left, right}{Ornament for that side: an id from \code{\link[=dk_ornaments]{dk_ornaments()}} (best are the borders, \code{"greek_key"}, \code{"scallop"}, \code{"rinceau"}, and rules), a grob, or \code{NULL} for none. Left and right ornaments are rotated to run along the side.}
+\item{top, bottom, left, right}{Ornament for that side: an id from
+\code{\link[=dk_ornaments]{dk_ornaments()}} (best are the borders, \code{"greek_key"}, \code{"scallop"},
+\code{"rinceau"}, and rules), a grob, or \code{NULL} for none. Left and right
+ornaments are rotated to run along the side.}
 
-\item{corners}{\code{TRUE} or \code{"corner"} for the corner flourish, \code{NULL} or \code{FALSE} for none.}
+\item{corners}{\code{TRUE} or \code{"corner"} for the corner flourish, \code{NULL} or
+\code{FALSE} for none.}
 
 \item{ink}{Colour for ornaments given by id.}
 
-\item{thickness}{Width of the frame band, in inches (or a [grid::unit()]).}
+\item{thickness}{Width of the frame band, in inches (or a \code{\link[grid:unit]{grid::unit()}}).}
 
 \item{seed}{Integer seed; each side gets its own offset from it.}
 }
@@ -33,14 +37,19 @@ ornament_frame(
 A \code{gTree} of class \code{dk_framed}.
 }
 \description{
-Wraps a plot (or any grob) in ornaments: a border ornament along each side you ask for, and a corner flourish in each corner. The border ornaments fit themselves to the length of each side, so the frame works for any plot shape.
+Wraps a plot (or any grob) in ornaments: a border ornament along each side
+you ask for, and a corner flourish in each corner. The border ornaments fit
+themselves to the length of each side, so the frame works for any plot
+shape.
 }
 \details{
-The result prints like a plot and can be saved with [ggplot2::ggsave()]. It is a grob, not a ggplot, so further \code{+ layer} additions go on the plot \emph{before} framing it.
+The result prints like a plot and can be saved with \code{\link[ggplot2:ggsave]{ggplot2::ggsave()}}.
+It is a grob, not a ggplot, so further \code{+ layer} additions go on the plot
+\emph{before} framing it.
 }
 \examples{
 if (requireNamespace("ggplot2", quietly = TRUE)) {
-p <- ggplot2::ggplot(mtcars, ggplot2::aes(wt, mpg)) + ggplot2::geom_point()
-ornament_frame(p, top = "scallop", bottom = "scallop", corners = TRUE)
+  p <- ggplot2::ggplot(mtcars, ggplot2::aes(wt, mpg)) + ggplot2::geom_point()
+  ornament_frame(p, top = "scallop", bottom = "scallop", corners = TRUE)
 }
 }

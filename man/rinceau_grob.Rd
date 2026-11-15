@@ -17,9 +17,9 @@ rinceau_grob(
 \arguments{
 \item{thickness}{Maximum stroke thickness as a fraction of the box height.}
 
-\item{variation}{How much the seed may vary the shape, 0 to 1.}
-
 \item{seed}{Integer seed, or \code{NULL} for a random one.}
+
+\item{variation}{How much the seed may vary the shape, 0 to 1.}
 
 \item{ink}{Colour.}
 
@@ -29,10 +29,14 @@ rinceau_grob(
 A \code{gTree} grob.
 }
 \description{
-A wavy stem with a spiral curl springing from every crest and trough, alternating above and below, and a bead at the heart of each curl: the classical running scroll used on frames and friezes. Stem and curls are ribbons.
+A wavy stem with a spiral curl springing from every crest and trough,
+alternating above and below, and a bead at the heart of each curl: the
+classical running scroll used on frames and friezes. Stem and curls are
+ribbons.
 }
 \details{
-Fits itself to the box it is drawn in, adding as many scrolls as fit (a wide, short box works best, about 8 times wider than tall).
+Fits itself to the box it is drawn in, adding as many scrolls as fit (a wide,
+short box works best, about 8 times wider than tall).
 
 With a \code{seed}, the wave length, curl size and turns vary.
 }

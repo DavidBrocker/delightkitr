@@ -16,13 +16,17 @@ panel_ornament(
 )
 }
 \arguments{
-\item{thickness}{Width of the border band, in inches (or a [grid::unit()]).}
+\item{top, bottom, left, right}{Ornament for that side: an id from
+\code{\link[=dk_ornaments]{dk_ornaments()}} (best are the borders, \code{"greek_key"}, \code{"scallop"},
+\code{"rinceau"}, and rules), a grob, or \code{NULL} for none. Left and right
+ornaments are rotated to run along the side.}
 
-\item{top, bottom, left, right}{Ornament for that side: an id from \code{\link[=dk_ornaments]{dk_ornaments()}} (best are the borders, \code{"greek_key"}, \code{"scallop"}, \code{"rinceau"}, and rules), a grob, or \code{NULL} for none. Left and right ornaments are rotated to run along the side.}
-
-\item{corners}{\code{TRUE} or \code{"corner"} for the corner flourish, \code{NULL} or \code{FALSE} for none.}
+\item{corners}{\code{TRUE} or \code{"corner"} for the corner flourish, \code{NULL} or
+\code{FALSE} for none.}
 
 \item{ink}{Colour for ornaments given by id.}
+
+\item{thickness}{Width of the border band, in inches (or a \code{\link[grid:unit]{grid::unit()}}).}
 
 \item{seed}{Integer seed; each side gets its own offset from it.}
 }
@@ -30,16 +34,20 @@ panel_ornament(
 A ggplot2 layer.
 }
 \description{
-A layer that draws ornaments along the edges of the plotting panel, over the data area -- a decorated panel border. Add it to a plot with \code{+}.
+A layer that draws ornaments along the edges of the plotting panel, over
+the data area -- a decorated panel border. Add it to a plot with \code{+}.
 }
 \details{
-The ornaments sit \emph{inside} the panel, so give the scales a little extra room (for example \code{scale_y_continuous(expand = expansion(mult = 0.12))}) if they would cover data. To frame the whole plot, axes and all, use \code{\link[=ornament_frame]{ornament_frame()}} instead.
+The ornaments sit \emph{inside} the panel, so give the scales a little extra room
+(for example \code{scale_y_continuous(expand = expansion(mult = 0.12))}) if they
+would cover data. To frame the whole plot, axes and all, use
+\code{\link[=ornament_frame]{ornament_frame()}} instead.
 }
 \examples{
 if (requireNamespace("ggplot2", quietly = TRUE)) {
-ggplot2::ggplot(mtcars, ggplot2::aes(wt, mpg)) +
-ggplot2::geom_point() +
-ggplot2::scale_y_continuous(expand = ggplot2::expansion(mult = 0.15)) +
-panel_ornament(top = "greek_key", bottom = "greek_key", thickness = 0.3)
+  ggplot2::ggplot(mtcars, ggplot2::aes(wt, mpg)) +
+    ggplot2::geom_point() +
+    ggplot2::scale_y_continuous(expand = ggplot2::expansion(mult = 0.15)) +
+    panel_ornament(top = "greek_key", bottom = "greek_key", thickness = 0.3)
 }
 }

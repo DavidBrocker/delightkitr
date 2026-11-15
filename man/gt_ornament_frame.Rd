@@ -19,11 +19,14 @@ gt_ornament_frame(
 \arguments{
 \item{data}{A \code{gt_tbl}.}
 
-\item{top, bottom}{Ornament id from \code{\link[=dk_ornaments]{dk_ornaments()}}, or a grob, or \code{NULL} for none.}
+\item{top, bottom}{Ornament id from \code{\link[=dk_ornaments]{dk_ornaments()}}, or a grob, or \code{NULL}
+for none.}
 
-\item{title, subtitle}{Optional title and subtitle text, shown under the top ornament.}
+\item{title, subtitle}{Optional title and subtitle text, shown under the top
+ornament.}
 
-\item{width, height}{Ornament box in inches; the ratio sets its shape, and it scales to the table's width.}
+\item{width, height}{Ornament box in inches; the ratio sets its shape, and it
+scales to the table's width.}
 
 \item{ink}{Colour for ornaments given by id.}
 
@@ -33,16 +36,20 @@ gt_ornament_frame(
 The modified \code{gt_tbl}.
 }
 \description{
-Puts an ornament above the table (in the header, over the title) and another below it (as a source note). Ornaments are inlined as SVG and scale to the width of the table. Because they are HTML, they show in HTML output (Quarto, R Markdown, the Viewer), not in PDF or Word.
+Puts an ornament above the table (in the header, over the title) and another
+below it (as a source note). Ornaments are inlined as SVG and scale to the
+width of the table. Because they are HTML, they show in HTML output
+(Quarto, R Markdown, the Viewer), not in PDF or Word.
 }
 \details{
-Sets the table header, so any existing title or subtitle is replaced; pass \code{title} and \code{subtitle} here to keep them.
+Sets the table header, so any existing title or subtitle is replaced; pass
+\code{title} and \code{subtitle} here to keep them.
 }
 \examples{
 if (requireNamespace("gt", quietly = TRUE) &&
-requireNamespace("svglite", quietly = TRUE)) {
-gt::gt(head(mtcars[, 1:4])) |>
-gt_ornament_frame(top = "swash", bottom = "fleuron_rule",
-title = "Motor Trend cars")
+    requireNamespace("svglite", quietly = TRUE)) {
+  gt::gt(head(mtcars[, 1:4])) |>
+    gt_ornament_frame(top = "swash", bottom = "fleuron_rule",
+                      title = "Motor Trend cars")
 }
 }

@@ -7,10 +7,14 @@
 dk_ornaments()
 }
 \value{
-A data frame with columns \code{id}, \code{label}, \code{family} (\code{"rule"}, \code{"border"}, \code{"medallion"}, \code{"corner"} or \code{"mark"}), \code{ratio} (suggested box width / height), and \code{seeded}.
+A data frame with columns \code{id}, \code{label}, \code{family} (\code{"rule"},
+\code{"border"}, \code{"medallion"}, \code{"corner"} or \code{"mark"}), \code{ratio} (suggested
+box width / height), and \code{seeded}.
 }
 \description{
-A table of every ornament kind in the package: its id, a readable label, its family, the box shape it looks best in, and whether a \code{seed} varies it. Use \code{\link[=dk_ornament]{dk_ornament()}} to build one by id.
+A table of every ornament kind in the package: its id, a readable label, its
+family, the box shape it looks best in, and whether a \code{seed} varies it.
+Use \code{\link[=dk_ornament]{dk_ornament()}} to build one by id.
 }
 \examples{
 dk_ornaments()

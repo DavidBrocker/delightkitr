@@ -17,9 +17,9 @@ greek_key_grob(
 \arguments{
 \item{weight}{Line weight as a fraction of one grid step (about 0.3-0.7).}
 
-\item{variation}{How much the seed may vary the line weight, 0 to 1.}
-
 \item{seed}{Integer seed, or \code{NULL} for a random one.}
+
+\item{variation}{How much the seed may vary the line weight, 0 to 1.}
 
 \item{ink}{Colour.}
 
@@ -29,12 +29,16 @@ greek_key_grob(
 A \code{gTree} grob.
 }
 \description{
-The square meander: a continuous line that runs along a baseline and winds into a rectangular spiral, tile after tile. Drawn as a mitred polyline, so every corner is a true right angle.
+The square meander: a continuous line that runs along a baseline and winds
+into a rectangular spiral, tile after tile. Drawn as a mitred polyline, so
+every corner is a true right angle.
 }
 \details{
-Fits itself to the box it is drawn in, using as many whole tiles as fit and centring them (a wide, short box works best, about 10 times wider than tall).
+Fits itself to the box it is drawn in, using as many whole tiles as fit and
+centring them (a wide, short box works best, about 10 times wider than tall).
 
-With a \code{seed}, the key is the same shape every time but the line weight varies a little; \code{variation} scales that.
+With a \code{seed}, the key is the same shape every time but the line weight
+varies a little; \code{variation} scales that.
 }
 \examples{
 grid::grid.newpage()

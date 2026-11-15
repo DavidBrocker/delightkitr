@@ -9,7 +9,8 @@ dk_ornament(id, ...)
 \arguments{
 \item{id}{An ornament id from \code{\link[=dk_ornaments]{dk_ornaments()}}.}
 
-\item{...}{Passed on to the ornament's constructor (for example \code{seed}, \code{ink}).}
+\item{...}{Passed on to the ornament's constructor (for example \code{seed},
+\code{ink}).}
 }
 \value{
 A grid grob.
