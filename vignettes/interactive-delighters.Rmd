@@ -1,0 +1,19 @@
+---
+title: "Interactive & inline delighters"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Interactive & inline delighters}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(delightkitr)
+```
