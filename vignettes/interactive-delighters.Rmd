@@ -7,13 +7,71 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+library(delightkitr)
+library(htmltools)
+```
+
+delightkitr spreads across three surfaces — interactive HTML/JS/CSS widgets,
+static SVG appliqués for print, and TikZ for LaTeX. This article covers the
+two that live on the web: the **interactive specimen** (Surface 1) and the
+**inline SVG ornaments** (the `ornament_html()` bridge).
+
+## The interactive specimen
+
+The reference delighter — the organic "mitosis" specimen the package is named
+after — is a self-contained canvas animation shipped in `inst/js/`. Because it
+carries its own `<style>` and `<script>`, it can't live in a README (pandoc
+strips the script on build). An article can host it, and an **iframe** keeps
+its styles and script sealed off from the page:
+
+```{r specimen}
+# Load the self-contained specimen shipped with the package
+spec <- paste(
+  readLines(
+    system.file("js", "specimen.html", package = "delightkitr"),
+    warn = FALSE, encoding = "UTF-8"
+  ),
+  collapse = "\n"
+)
+
+# The file is a template: give its {{ID}} placeholder a unique value
+spec <- gsub("{{ID}}", "dk-specimen-1", spec, fixed = TRUE)
+
+# Embed in an isolated iframe so its <script>/<style> can't collide with the page
+tags$iframe(
+  srcdoc  = spec,
+  title   = "delightkitr interactive specimen",
+  loading = "lazy",
+  style   = "width:100%; height:520px; border:0; display:block;"
 )
 ```
 
-```{r setup}
-library(delightkitr)
+That same pattern works in any Quarto HTML doc, R Markdown page, or Shiny app —
+read the file, substitute an id, drop it in an iframe.
+
+## Inline SVG ornaments
+
+The static ornaments need no script at all. `ornament_html()` renders a grob to
+an inline `<svg>` string, so these embed anywhere and survive every rebuild. In
+a chunk, set `results = "asis"` and `cat()` the markup:
+
+```{r sunburst, results = "asis"}
+cat(ornament_html(sunburst_grob(), width = 1.2, height = 1.2))
 ```
+
+```{r rosette, results = "asis"}
+cat(ornament_html(rosette_grob(), width = 1.2, height = 1.2))
+```
+
+```{r rule, results = "asis"}
+# A wide, short grob reads as a horizontal rule rather than a medallion
+cat(ornament_html(rinceau_grob(), width = 4, height = 0.6))
+```
+
+These are the same strings `gt_ornament()` drops into a `gt` table — the bridge
+is written once and reused across every HTML surface.
+
+> Inline ornaments need the **svglite** package (it's in `Suggests`). Install it
+> if a chunk above errors on a missing device.
